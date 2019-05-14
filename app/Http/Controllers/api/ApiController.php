@@ -56,7 +56,7 @@ class ApiController extends BaseController
     public function userinfo(Request $request)
     {
         $email = $_POST['email'];
-        echo json_encode($email)die;
+        echo json_encode($email);die;
         $res = DB::table('t_user')->where(['email'=> $email])->first();
 
         if($res){
