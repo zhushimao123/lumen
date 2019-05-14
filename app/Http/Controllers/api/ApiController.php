@@ -55,21 +55,15 @@ class ApiController extends BaseController
     //注册
     public function userinfo(Request $request)
     {
-       echo json_encode($_POST['name']);
-//        $name = $request->input('name');
-//        $pass = $request->input('pass');
-//        $email = $request->input('email');
-//        $res = DB::table('t_user')->where(['email'=> $email])->first();
-//
-//        if($res){
-//            $response = [
-//                'errno'=> '8000',
-//                'msg'=> '邮箱已存在'
-//            ];
-//            die(json_encode($response,JSON_UNESCAPED_UNICODE));
-//        }else{
-//            echo 222;
-//        }
+        $res = DB::table('t_user')->where(['email'=> $_POST['email']])->first();
+
+        if($res){
+            $response = [
+                'errno'=> '8000',
+                'msg'=> '邮箱已存在'
+            ];
+            die(json_encode($response,JSON_UNESCAPED_UNICODE));
+        }
 //        header('Access-Control-Allow-Origin:http://client.1809a.com');
 //        $json_str = file_get_contents("php://input");
 //
