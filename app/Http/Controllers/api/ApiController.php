@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 use App\Http\Controllers\api\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
@@ -52,15 +53,17 @@ class ApiController extends BaseController
         var_dump($info);
     }
     //注册
-    public function userinfo()
+    public function userinfo(Request $request)
     {
+        $a =$request -> all();
+        var_dump($a);
 //        header('Access-Control-Allow-Origin:http://client.1809a.com');
 //        $json_str = file_get_contents("php://input");
-         if(empty($_POST)){
-             echo 111;
-         }else{
-             echo 222;
-         }
+//         if(empty($_POST)){
+//             echo 111;
+//         }else{
+//             echo 222;
+//         }
 //
 //        $b64 = base64_decode($json_str);
 //        $key = openssl_get_publickey('file://'.storage_path('app/keys/public.pem'));
