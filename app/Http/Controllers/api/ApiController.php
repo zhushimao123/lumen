@@ -67,6 +67,8 @@ class ApiController extends BaseController
                 'msg'=> '邮箱已存在'
             ];
             die(json_encode($response,JSON_UNESCAPED_UNICODE));
+        }else{
+            echo 222;
         }
 //        header('Access-Control-Allow-Origin:http://client.1809a.com');
 //        $json_str = file_get_contents("php://input");
