@@ -57,18 +57,13 @@ class ApiController extends BaseController
     {
 //        echo 111111111;die;
         $email = $_POST['email'];
-//        echo json_encode($email);die;
+        $name = $_POST['name'];
+        $pass = $_POST['pass'];
         $res = DB::table('t_user')->where(['email'=> $email])->first();
 
         if($res){
             $response = '邮箱已存在';
-//            $response = [
-//                'errno'=> '8000',
-//                'msg'=> '邮箱已存在'
-//            ];
             echo  json_encode($response,JSON_UNESCAPED_UNICODE);
-        }else{
-            echo 222;
         }
 //        header('Access-Control-Allow-Origin:http://client.1809a.com');
 //        $json_str = file_get_contents("php://input");
@@ -80,15 +75,17 @@ class ApiController extends BaseController
 //        openssl_public_decrypt($b64,$enty,$key);
 //        $info = json_decode($enty,true);
 ////        var_dump($info);die;
-//        //存表
-//        $result = DB::table('t_user')->insert($info);
-//        if(!$result){
-//            $response = [
-//                'errno'=> '8001',
-//                'msg'=> '注册失败'
-//            ];
-//            die(json_encode($response,true));
-//        }else{
+        $info = [
+            'email'=> $email,
+            'name' => $name,
+            'pass'=> $pass
+        ];
+        //存表
+        $result = DB::table('t_user')->insert($info);
+        if(!$result){
+            $response =  '注册失败';
+            die(json_encode($response,true));
+        }//else{
 //            $res2 = DB::table('t_user')->where(['email'=> $info['email']])->first();
 //            $uid = $res2-> uid;
 ////            var_dump($uid);
