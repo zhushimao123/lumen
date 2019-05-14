@@ -56,7 +56,11 @@ class ApiController extends BaseController
     {
 //        header('Access-Control-Allow-Origin:http://client.1809a.com');
 //        $json_str = file_get_contents("php://input");
-          var_dump($_POST);die;
+         if(empty($_POST)){
+             echo 111;
+         }else{
+             echo 222;
+         }
 //
 //        $b64 = base64_decode($json_str);
 //        $key = openssl_get_publickey('file://'.storage_path('app/keys/public.pem'));
