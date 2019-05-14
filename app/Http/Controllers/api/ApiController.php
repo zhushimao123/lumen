@@ -55,7 +55,7 @@ class ApiController extends BaseController
     //注册
     public function userinfo(Request $request)
     {
-        $data =$request -> all();
+        $data =$request -> name;
       echo  json_encode($data,JSON_UNESCAPED_UNICODE);die;
 //        header('Access-Control-Allow-Origin:http://client.1809a.com');
 //        $json_str = file_get_contents("php://input");
