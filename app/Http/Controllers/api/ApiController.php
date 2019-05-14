@@ -55,7 +55,9 @@ class ApiController extends BaseController
     //注册
     public function userinfo(Request $request)
     {
-        $res = DB::table('t_user')->where(['email'=> $_POST['email']])->first();
+        $email = $_POST['email'];
+        echo json_encode($email)die;
+        $res = DB::table('t_user')->where(['email'=> $email])->first();
 
         if($res){
             $response = [
