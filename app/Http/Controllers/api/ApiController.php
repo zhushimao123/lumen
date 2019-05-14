@@ -61,10 +61,11 @@ class ApiController extends BaseController
         $res = DB::table('t_user')->where(['email'=> $email])->first();
 
         if($res){
-            $response = [
-                'errno'=> '8000',
-                'msg'=> '邮箱已存在'
-            ];
+            $response = '邮箱已存在';
+//            $response = [
+//                'errno'=> '8000',
+//                'msg'=> '邮箱已存在'
+//            ];
             echo  json_encode($response,JSON_UNESCAPED_UNICODE);
         }
 //        header('Access-Control-Allow-Origin:http://client.1809a.com');
