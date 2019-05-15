@@ -55,17 +55,39 @@ class ApiController extends BaseController
     //注册
     public function userinfo(Request $request)
     {
-//        echo 111111111;die;
-        $email = $_POST['email'];
-        $name = $_POST['name'];
-        $pass = $_POST['pass'];
-        $res = DB::table('t_user')->where(['email'=> $email])->first();
+//        header('Access-Control-Allow-Origin:*');
+//        header('Access-Control-Allow-Methods:POST,GET,OPTIONS,DELETE'); //支持的http动作
+//        header('Access-Control-Allow-Headers:x-requested-with,content-type');  //响应头 请按照自己需求添加。
 
-        if($res){
-            $response = '邮箱已存在';
-            echo  json_encode($response,JSON_UNESCAPED_UNICODE);
-        }
-//        header('Access-Control-Allow-Origin:http://client.1809a.com');
+        $email = $_POST['name'];
+        $pass = $_POST['pass'];
+        $post_arr = [
+            'email' =>  $email,
+            'pass' => $pass
+        ];
+        $post_json = json_encode($post_arr);
+        //url
+        $url = 'http://api.1809a.com/appuser';
+        //初始化 创建新资源
+        $ch = curl_init();
+        // 设置 URL 和相应的选项
+        curl_setopt($ch, CURLOPT_URL, $url);
+        //发送post请求
+        curl_setopt($ch, CURLOPT_POST, 1);
+        //禁止浏览器输出
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //发送数据
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_json);
+        //字符串文本
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:text/plain']);
+        //抓取 URL 并把它传递给浏览器
+        $rs = curl_exec($ch);  //data 数据
+        echo $rs;
+        //错误码
+//        var_dump(curl_error($ch));
+        // 关闭 cURL 资源，并且释放系统资源
+        curl_close($ch);
+
 //        $json_str = file_get_contents("php://input");
 //
 //        $b64 = base64_decode($json_str);
@@ -75,17 +97,8 @@ class ApiController extends BaseController
 //        openssl_public_decrypt($b64,$enty,$key);
 //        $info = json_decode($enty,true);
 ////        var_dump($info);die;
-        $info = [
-            'email'=> $email,
-            'name' => $name,
-            'pass'=> $pass
-        ];
-        //存表
-        $result = DB::table('t_user')->insert($info);
-        if(!$result){
-            $response =  '注册失败';
-            die(json_encode($response,true));
-        }//else{
+
+        //else{
 //            $res2 = DB::table('t_user')->where(['email'=> $info['email']])->first();
 //            $uid = $res2-> uid;
 ////            var_dump($uid);
@@ -105,5 +118,49 @@ class ApiController extends BaseController
     {
         $str = substr(sha1(time() . Str::random(10) . $uid.$_SERVER['DB_HOST']), 5, 15);
         return $str;
+    }
+    //登陆
+    public function login()
+    {
+//        header('Access-Control-Allow-Origin:*');
+//        header('Access-Control-Allow-Methods:POST,GET,OPTIONS,DELETE'); //支持的http动作
+//        header('Access-Control-Allow-Headers:x-requested-with,content-type');  //响应头 请按照自己需求添加。
+        $email = $_POST['name'];
+        $pass = $_POST['pass'];
+        $post_arr = [
+            'email' =>  $email,
+            'pass' => $pass
+        ];
+        $post_json = json_encode($post_arr);
+        $url = 'http://api.1809a.com/applogin';
+        //初始化
+        $ch = curl_init();
+        // 设置 URL 和相应的选项
+        curl_setopt($ch, CURLOPT_URL, $url);
+        //发送post请求
+        curl_setopt($ch, CURLOPT_POST, 1);
+        //禁止浏览器输出
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //发送数据
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_json);
+        //字符串文本
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:text/plain']);
+        //抓取 URL 并把它传递给浏览器
+        $rs = curl_exec($ch);  //data 数据
+        echo $rs;
+        //错误码
+//        var_dump(curl_error($ch));
+        // 关闭 cURL 资源，并且释放系统资源
+        curl_close($ch);
+
+    }
+    //个人中心
+    public function users()
+    {
+        $response = [
+            'msg'=> 'zhangsans',
+            'erron' => 'ok'
+        ];
+        echo json_encode($response);die;
     }
 }

@@ -22,6 +22,17 @@ $router->post('/qianming','api\ApiController@autograph');
 $router->post('/dncrypt','api\ApiController@dncrypt');
 //接受数据
 $router->post('/userinfo','api\ApiController@userinfo');
+$router->options('/userinfo',function(){
+    return [];
+});
+//登陆
+$router->post('/login','api\ApiController@login');
+//个人中心
+//$router->get('/users','api\ApiController@users')->Middleware('checklog');
+$router->group(['middleware' => 'checklog'], function ($router){
+    $router->get('/users','api\ApiController@users');
+});
+
 
 $router->get('/user','api\ApiController@user');
 
