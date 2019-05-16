@@ -174,7 +174,7 @@ class ApiController extends BaseController
     //商品列表
     public function  goodslist()
     {
-        $res = DB::table('shop_goods')->where(['goods_show'=>1])->get()->toArray();
+        $res = DB::table('shop_goods')->where(['goods_new'=>1])->get()->toArray();
         $url = 'http://www.mneddx.com/appgoodslist';
         $this-> getcurl($res,$url);
     }
@@ -197,7 +197,7 @@ class ApiController extends BaseController
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:text/plain']);
         //抓取 URL 并把它传递给浏览器
         $rs = curl_exec($ch);  //data 数据
-        echo $rs;
+        var_dump($rs);
         //错误码
         $errno = curl_error($ch);
         if($errno){
