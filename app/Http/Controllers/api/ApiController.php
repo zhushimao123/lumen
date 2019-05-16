@@ -174,11 +174,14 @@ class ApiController extends BaseController
     //商品列表
     public function  goodslist()
     {
-        $res = DB::table('shop_goods')->where(['goods_new'=>1])->get();
-        var_dump($res);die;
+        $goodsinfo = DB::table('shop_goods')->where(['goods_new'=>1])->get();
         $response = [
-            'goods'
+           'errno' => 'ok',
+            'data' => [
+                'goodsinfo'=> $goodsinfo
+            ]
         ];
+        die(json_encode($response,JSON_UNESCAPED_UNICODE));
     }
     //curl
     public function getcurl($res,$url)
