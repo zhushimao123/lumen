@@ -171,4 +171,10 @@ class ApiController extends BaseController
         }
 
     }
+    //商品列表
+    public function  goodslist()
+    {
+        $res = DB::table('shop_goods')->limit(20);
+        echo json_decode($res);
+    }
 }
