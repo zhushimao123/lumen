@@ -175,6 +175,6 @@ class ApiController extends BaseController
     public function  goodslist()
     {
         $res = DB::table('shop_goods')->limit(20);
-        echo json_decode($res);
+        echo json_encode($res);
     }
 }
