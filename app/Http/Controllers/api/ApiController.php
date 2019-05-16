@@ -122,9 +122,6 @@ class ApiController extends BaseController
     //登陆
     public function login()
     {
-//        header('Access-Control-Allow-Origin:*');
-//        header('Access-Control-Allow-Methods:POST,GET,OPTIONS,DELETE'); //支持的http动作
-//        header('Access-Control-Allow-Headers:x-requested-with,content-type');  //响应头 请按照自己需求添加。
         $email = $_POST['name'];
         $pass = $_POST['pass'];
         $post_arr = [
@@ -132,7 +129,7 @@ class ApiController extends BaseController
             'pass' => $pass
         ];
         $post_json = json_encode($post_arr);
-        $url = 'http://api.1809a.com/applogin';
+        $url = 'http://www.mneddx.com/applogin';
         //初始化
         $ch = curl_init();
         // 设置 URL 和相应的选项
