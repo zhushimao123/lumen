@@ -197,7 +197,7 @@ class ApiController extends BaseController
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:text/plain']);
         //抓取 URL 并把它传递给浏览器
         $rs = curl_exec($ch);  //data 数据
-        var_dump($rs);
+       echo $rs;
         //错误码
         $errno = curl_error($ch);
         if($errno){
