@@ -67,7 +67,7 @@ class ApiController extends BaseController
         ];
         $post_json = json_encode($post_arr);
         //url
-        $url = 'http://api.1809a.com/appuser';
+        $url = 'http://www.mneddx.com/appuser';
         //初始化 创建新资源
         $ch = curl_init();
         // 设置 URL 和相应的选项
@@ -157,10 +157,21 @@ class ApiController extends BaseController
     //个人中心
     public function users()
     {
-        $response = [
-            'msg'=> 'zhangsans',
-            'erron' => 'ok'
-        ];
-        echo json_encode($response);die;
+        $uid = $_GET['uid'];
+        $res = DB::table('t_user')->where(['uid'=> $uid])->first();
+        if($res){
+            $response = [
+                'msg'=> $res,
+                'erron' => 'ok'
+            ];
+            echo json_encode($response);die;
+        }else{
+            $response = [
+                'msg'=> '用户不存在',
+                'erron' => 'no'
+            ];
+            echo json_encode($response);die;
+        }
+
     }
 }
