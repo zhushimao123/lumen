@@ -174,10 +174,11 @@ class ApiController extends BaseController
     //商品列表
     public function  goodslist()
     {
-        $res = DB::table('shop_goods')->where(['goods_new'=>1])->get()->toArray();
-        $url = 'http://www.mneddx.com/appgoodslist';
-        $data = $this-> getcurl($res,$url);
-//        echo $data;
+        $res = DB::table('shop_goods')->where(['goods_new'=>1])->get();
+        var_dump($res);die;
+        $response = [
+            'goods'
+        ];
     }
     //curl
     public function getcurl($res,$url)
