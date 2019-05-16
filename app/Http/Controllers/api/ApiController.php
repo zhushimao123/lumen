@@ -175,7 +175,39 @@ class ApiController extends BaseController
     public function  goodslist()
     {
         $res = DB::table('shop_goods')->where(['goods_show'=>1])->get()->toArray();
-        echo json_encode($res);
+        $url = 'http://www.mneddx.com/appgoodslist';
+        $this-> getcurl($res,$url);
+    }
+    //curl
+    public function getcurl($res,$url)
+    {
+
+        $post_json = json_encode($res);
+        //初始化 创建新资源
+        $ch = curl_init();
+        // 设置 URL 和相应的选项
+        curl_setopt($ch, CURLOPT_URL, $url);
+        //发送post请求
+        curl_setopt($ch, CURLOPT_POST, 1);
+        //禁止浏览器输出
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //发送数据
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_json);
+        //字符串文本
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:text/plain']);
+        //抓取 URL 并把它传递给浏览器
+        $rs = curl_exec($ch);  //data 数据
+        echo $rs;
+        //错误码
+        $errno = curl_error($ch);
+        if($errno){
+            $response = [
+                'errno' =>"error no 6211"
+            ];
+            die(json_encode($response));
+        }
+        // 关闭 cURL 资源，并且释放系统资源
+        curl_close($ch);
 
     }
 }
