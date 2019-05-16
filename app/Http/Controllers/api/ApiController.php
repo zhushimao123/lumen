@@ -174,7 +174,8 @@ class ApiController extends BaseController
     //商品列表
     public function  goodslist()
     {
-        $res = DB::table('shop_goods')->limit(20);
+        $res = DB::table('shop_goods')->where(['goods_show'=>1])->get()->toArray();
         echo json_encode($res);
+
     }
 }
