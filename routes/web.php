@@ -35,6 +35,7 @@ $router->group(['middleware' => 'checklog'], function ($router){
     $router->get('/goodsinfo','api\ApiController@goodsinfo');
     $router->get('/goodscart','api\ApiController@goodscart');
     $router->get('/cartlist','api\ApiController@cartlist');
+    $router->get('/order','api\ApiController@order');
 });
 //总价
 $router->get('/countprice','api\ApiController@countprice');

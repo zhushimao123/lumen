@@ -260,6 +260,11 @@ class ApiController extends BaseController
     {
         $res = DB::table('shop_cart')->delete();
     }
+    //点击结算
+    public function order()
+    {
+        var_dump($_GET);
+    }
     //curl
     public function getcurl($info,$url)
     {
