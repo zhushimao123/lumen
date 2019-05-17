@@ -216,6 +216,16 @@ class ApiController extends BaseController
         $url = 'http://www.mneddx.com/appcart';
       $this-> getcurl($info,$url);
     }
+    //购物车展示
+    public  function cartlist()
+    {
+       $goods_id = $_GET['goods_id'];
+        $where = [
+            'cart_status'=>1
+        ];
+        $arr = DB::table('shop_cart')->join('shop_goods','shop_goods.goods_id','=','shop_cart.goods_id')->where($where)->get();
+        var_dump($arr);
+    }
     //curl
     public function getcurl($info,$url)
     {

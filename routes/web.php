@@ -34,6 +34,7 @@ $router->group(['middleware' => 'checklog'], function ($router){
     $router->get('/goods','api\ApiController@goodslist');
     $router->get('/goodsinfo','api\ApiController@goodsinfo');
     $router->get('/goodscart','api\ApiController@goodscart');
+    $router->get('/cartlist','api\ApiController@cartlist');
 });
 
 
