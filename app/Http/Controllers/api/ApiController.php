@@ -185,7 +185,22 @@ class ApiController extends BaseController
     }
     //商品详情
     public function  goodsinfo(){
-        var_dump($_GET);
+       $goods_id =  $_GET['goods_id'];
+       if(!$goods_id){
+           $response = [
+               'errno' => 'no',
+                'msg' => '此商品信息不存在'
+           ];
+           die(json_encode($response,JSON_UNESCAPED_UNICODE));
+       }
+       $info = DB::table('shop_goods')->where(['goods_id'=>$goods_id])->first();
+        $response = [
+            'errno' => 'ok',
+            'data' => [
+                'info'=> $info
+            ]
+        ];
+        die(json_encode($response,JSON_UNESCAPED_UNICODE));
     }
     //curl
     public function getcurl($res,$url)
