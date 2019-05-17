@@ -220,8 +220,11 @@ class ApiController extends BaseController
     public  function cartlist()
     {
        $goods_id = $_GET['goods_id'];
+       $user_id = $_GET['uid'];
         $where = [
-            'cart_status'=>1
+            'cart_status'=>1,
+            'user_id' => $user_id,
+            'goods_id'=> $goods_id
         ];
         $arr = DB::table('shop_cart')->join('shop_goods','shop_goods.goods_id','=','shop_cart.goods_id')->where($where)->get();
         $response = [
