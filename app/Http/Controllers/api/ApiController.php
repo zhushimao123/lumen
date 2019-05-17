@@ -233,6 +233,12 @@ class ApiController extends BaseController
         ];
         die(json_encode($response,JSON_UNESCAPED_UNICODE));
     }
+    //总价
+    public  function countprice(Request $request)
+    {
+       $goods_id =  $request-> all();
+       echo $goods_id;
+    }
     //curl
     public function getcurl($info,$url)
     {
