@@ -273,7 +273,7 @@ class ApiController extends BaseController
         $orderinfo = DB::table('shop_cart')->whereIn('shop_cart.goods_id',$goods)
             ->where(['user_id'=>$user_id])->join('shop_goods','shop_cart.goods_id','=','shop_goods.goods_id')
             ->get();
-        var_dump($orderinfo);die;
+//        var_dump($orderinfo);die;
         $countprice = 0;
         foreach ($orderinfo as $k=> $v){
             $countprice = $countprice + $v-> goods_price * $v-> buy_number;
