@@ -285,7 +285,7 @@ class ApiController extends BaseController
                 'orderinfo'=> $orderinfo
             ]
         ];
-        echo json_encode($response,JSON_UNESCAPED_UNICODE);die;
+        die(json_encode($response,JSON_UNESCAPED_UNICODE));
     }
     //curl
     public function getcurl($info,$url)
