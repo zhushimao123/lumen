@@ -267,21 +267,25 @@ class ApiController extends BaseController
         $goods_id = $_GET['goods_id'];
 
         $user_id = $_GET['uid'];
-       
+
         $goods = explode(',',$goods_id);
         //确认订单
         $orderinfo = DB::table('shop_cart')->whereIn('shop_cart.goods_id',$goods)
             ->where(['user_id'=>$user_id])->join('shop_goods','shop_cart.goods_id','=','shop_goods.goods_id')
             ->get();
         var_dump($orderinfo);die;
-//             $arr =DB::table('shop_cart')->whereIn('shop_cart.goods_id',$goods)
-//                 ->where('user_id',$user_id)
-//                 ->join('shop_goods','shop_cart.goods_id','=','shop_goods.goods_id')
-//                 ->get();
         $countprice = 0;
         foreach ($orderinfo as $k=> $v){
             $countprice = $countprice + $v-> goods_price * $v-> buy_number;
         }
+        $response = [
+            'errno' => 'ok',
+            'countprice'=> $countprice,
+            'data'=> [
+                'orderinfo'=> $orderinfo
+            ]
+        ];
+        echo json_encode($response,JSON_UNESCAPED_UNICODE);die;
     }
     //curl
     public function getcurl($info,$url)
