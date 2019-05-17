@@ -265,6 +265,7 @@ class ApiController extends BaseController
     {
 //        var_dump($_GET);
         $goods_id = $_GET['goods_id'];
+        var_dump($goods_id);die;
         $user_id = $_GET['uid'];
         $goods_id = implode($goods_id);
         $goods = explode(',',$goods_id);
