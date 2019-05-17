@@ -249,7 +249,11 @@ class ApiController extends BaseController
                }
            }
        }
-       var_dump($contprice);
+       $respose = [
+           'errno'=> 'ok',
+           'msg' => $contprice
+       ];
+        echo json_encode($respose);die;
 
 
     }
