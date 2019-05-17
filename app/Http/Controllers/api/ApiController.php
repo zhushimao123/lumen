@@ -183,6 +183,10 @@ class ApiController extends BaseController
         ];
         die(json_encode($response,JSON_UNESCAPED_UNICODE));
     }
+    //商品详情
+    public function  goodsinfo(){
+        print_r($_GET());
+    }
     //curl
     public function getcurl($res,$url)
     {

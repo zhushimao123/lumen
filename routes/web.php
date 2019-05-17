@@ -32,6 +32,7 @@ $router->post('/login','api\ApiController@login');
 $router->group(['middleware' => 'checklog'], function ($router){
     $router->get('/users','api\ApiController@users');
     $router->get('/goods','api\ApiController@goodslist');
+    $router->get('/goodsinfo','api\ApiController@goodsinfo');
 });
 
 
