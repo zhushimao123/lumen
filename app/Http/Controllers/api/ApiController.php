@@ -263,7 +263,24 @@ class ApiController extends BaseController
     //点击结算
     public function order()
     {
-        var_dump($_GET);
+//        var_dump($_GET);
+        $goods_id = $_GET['goods_id'];
+        $user_id = $_GET['uid'];
+        $goods_id = implode($goods_id);
+        $goods = explode(',',$goods_id);
+        //确认订单
+        $orderinfo = DB::table('shop_cart')->whereIn('shop_cart.goods_id',$goods)
+            ->where(['user_id'=>$user_id])->join('shop_goods','shop_cart.goods_id','=','shop_goods.goods_id')
+            ->get();
+        var_dump($orderinfo);die;
+//             $arr =DB::table('shop_cart')->whereIn('shop_cart.goods_id',$goods)
+//                 ->where('user_id',$user_id)
+//                 ->join('shop_goods','shop_cart.goods_id','=','shop_goods.goods_id')
+//                 ->get();
+        $countprice = 0;
+        foreach ($orderinfo as $k=> $v){
+            $countprice = $countprice + $v-> goods_price * $v-> buy_number;
+        }
     }
     //curl
     public function getcurl($info,$url)
