@@ -237,7 +237,7 @@ class ApiController extends BaseController
     public  function countprice(Request $request)
     {
        $goods_id =  $request-> all();
-       echo $goods_id;
+       var_dump($goods_id);
     }
     //curl
     public function getcurl($info,$url)
