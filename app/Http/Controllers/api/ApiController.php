@@ -236,8 +236,22 @@ class ApiController extends BaseController
     //总价
     public  function countprice(Request $request)
     {
-       $goods_id =  $request-> all();
-       var_dump($goods_id);
+       $g_id =  $request-> all();
+       $goods_id = implode($g_id);
+       $goods = explode(',',$goods_id);
+       $cartinfo = DB::table('shop_cart')->whereIn('goods_id',$goods)->get();
+       $goodsinfo = DB::table('shop_goods')->whereIn('goods_id',$goods)->get();
+       $contprice = 0;
+       foreach($cartinfo as $k=>$v){
+           foreach ($goodsinfo as $key=>$val){
+               if($v-> goods_id == $val-> goods_id){
+                   $contprice = $contprice + $v-> buy_number * $val-> goods_price;
+               }
+           }
+       }
+       var_dump($contprice);
+
+
     }
     //curl
     public function getcurl($info,$url)
