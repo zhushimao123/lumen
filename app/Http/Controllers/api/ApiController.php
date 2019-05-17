@@ -205,13 +205,22 @@ class ApiController extends BaseController
     //购物车
     public function goodscart()
     {
-        print_r($_GET);
+      $goods_id =  $_GET['goods_id']; //商品id
+      $user_id = $_GET['uid'];  //用户id
+      $buy_number = $_GET['buy_number'];
+      $info =[
+          'goods_id' => $goods_id,
+          'buy_number' => $buy_number,
+          'user_id' => $user_id
+      ];
+        $url = 'http://www.mneddx.com/appcart';
+      $this-> getcurl($info,$url);
     }
     //curl
-    public function getcurl($res,$url)
+    public function getcurl($info,$url)
     {
 
-        $post_json = json_encode($res);
+        $post_json = json_encode($info);
         //初始化 创建新资源
         $ch = curl_init();
         // 设置 URL 和相应的选项
