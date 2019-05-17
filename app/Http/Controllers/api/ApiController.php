@@ -185,7 +185,7 @@ class ApiController extends BaseController
     }
     //商品详情
     public function  goodsinfo(){
-        print_r($_GET());
+        var_dump($_GET);
     }
     //curl
     public function getcurl($res,$url)
