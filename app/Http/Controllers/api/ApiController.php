@@ -224,7 +224,13 @@ class ApiController extends BaseController
             'cart_status'=>1
         ];
         $arr = DB::table('shop_cart')->join('shop_goods','shop_goods.goods_id','=','shop_cart.goods_id')->where($where)->get();
-        var_dump($arr);
+        $response = [
+            'errno' => 'ok',
+            'data' => [
+                'info'=> $arr
+            ]
+        ];
+        die(json_encode($response,JSON_UNESCAPED_UNICODE));
     }
     //curl
     public function getcurl($info,$url)
