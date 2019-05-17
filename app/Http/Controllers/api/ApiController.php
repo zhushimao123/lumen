@@ -254,8 +254,11 @@ class ApiController extends BaseController
            'msg' => $contprice
        ];
         echo json_encode($respose);die;
-
-
+    }
+    //清空购物车
+    public function delecart()
+    {
+        $res = DB::table('shop_cart')->delete();
     }
     //curl
     public function getcurl($info,$url)
