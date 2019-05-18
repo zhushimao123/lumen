@@ -382,7 +382,7 @@ class ApiController extends BaseController
         $user_id = $_GET['uid'];
         $order_id = $_GET['order_id'];
         $res = DB::table('shop_order')->where(['order_id'=> $order_id,'user_id'=>$user_id])->first();
-        $order_no = $res-> oreder_no;
+        $order_no = $res-> order_no;
         $order_amount = $res-> order_amount;
         $response = [
             'order_no'=> $order_no,
