@@ -36,8 +36,6 @@ $router->group(['middleware' => 'checklog'], function ($router){
     $router->get('/goodscart','api\ApiController@goodscart');
     $router->get('/cartlist','api\ApiController@cartlist');
     $router->get('/order','api\ApiController@order');
-    //提交订单
-    $router->get('/orders','api\ApiController@orders');
 });
 //总价
 $router->get('/countprice','api\ApiController@countprice');
@@ -46,4 +44,6 @@ $router->get('/orderdo','api\ApiController@orderdo');
 //清空购物车
 $router->get('/delecart','api\ApiController@delecart');
 
+//提交订单
+$router->get('/orders','api\ApiController@orders');
 
