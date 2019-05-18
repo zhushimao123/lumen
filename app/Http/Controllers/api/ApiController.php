@@ -457,8 +457,10 @@ class ApiController extends BaseController
         foreach($data as $key=>$val){
             $a.=$key.'='.urlencode($val).'&'; //urlencode 将字符串以url形式编码
         }
-        $trim = rtrim($a,'&');
-        var_dump($trim);die;
+        $trim2 = rtrim($a,'&');
+//        var_dump($trim);die;
+        $url = 'https://openapi.alipaydev.com/gateway.do'.$trim2;
+        header('Location:'.$url);
 
     }
     //微信支付
