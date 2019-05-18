@@ -390,6 +390,11 @@ class ApiController extends BaseController
         ];
         die(json_encode($response,JSON_UNESCAPED_UNICODE));
     }
+    //支付宝支付
+    public function alipay()
+    {
+        print_r($_GET);
+    }
     //订单号
     public function getorderno()
     {

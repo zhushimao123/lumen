@@ -46,4 +46,7 @@ $router->get('/delecart','api\ApiController@delecart');
 
 //提交订单
 $router->get('/orders','api\ApiController@orders');
+//支付
+$router->get('/alipay','api\ApiController@alipay');
+
 
