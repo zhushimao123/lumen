@@ -390,10 +390,63 @@ class ApiController extends BaseController
         ];
         die(json_encode($response,JSON_UNESCAPED_UNICODE));
     }
-    //支付宝支付
+    //支付
     public function alipay()
     {
-        print_r($_GET);
+        if(empty($_GET['oid'])){
+            $response = [
+                'errno'=> 'no',
+                'msg'=> '订单不存在'
+            ];
+            die(json_encode($response,JSON_UNESCAPED_UNICODE));
+        }
+        $res = DB::table('shop_order')->where(['order_no'=>$_GET['oid']])->first();
+        $pay_type = $res->pay_type;
+        if($pay_type==2){
+            //支付宝支付
+            $this-> getalipay($_GET['oid']);
+        }else{
+            //微信支付
+            $this-> weixinpay();
+        }
+    }
+    //支付宝支付
+    public function  getalipay($oid)
+    {
+        $res = DB::table('shop_order')->where(['order_no'=>$_GET['oid']])->first();
+        //业务参数
+        $bizcont = [
+           'subject' => '月七',//交易标题/订单标题/订单关键
+            'out_trade_no'=>$oid, //订单号
+            'total_amount'      => $res->order_amount / 100, //支付金额
+            'product_code'      => 'QUICK_WAP_WAY', //固定值
+        ];
+        //公共参数
+        $data = [
+            'app_id'   => '2016092700608889',
+            'method'   => 'alipay.trade.wap.pay',
+            'format'   => 'JSON',
+            'charset'   => 'utf-8',
+            'sign_type'   => 'RSA2',
+            'timestamp'   => date('Y-m-d H:i:s'),
+            'version'   => '1.0',
+//            'notify_url'   => $this->notify(),        //异步通知地址
+//            'return_url'   => $this->return(),        // 同步通知地址
+            'biz_content'   => json_encode($bizcont),
+        ];
+        //拼接参数
+        ksort($data);//根据键以升序对关联数组进行排序
+        $i = "";
+        foreach ($data as $k=>$v)
+        {
+            $i.=$k.'='.$v.'&';
+        }
+        var_dump($i);
+    }
+    //微信支付
+    public function weixinpay()
+    {
+
     }
     //订单号
     public function getorderno()
