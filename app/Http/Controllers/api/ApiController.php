@@ -294,7 +294,8 @@ class ApiController extends BaseController
         $goods_id = $request-> goods_id;
         $countprice = $request-> countprice;
         $pay_type = $request-> pay_type;
-        var_dump($goods_id);
+        $g_id = explode(',',$goods_id);
+        var_dump($g_id);
     }
     //curl
     public function getcurl($info,$url)
