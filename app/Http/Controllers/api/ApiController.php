@@ -443,7 +443,7 @@ class ApiController extends BaseController
         {
             $i.=$k.'='.$v.'&';
         }
-//        var_dump($i);
+        var_dump($i);die;
         $trim  = rtrim($i,'&');
         //计算签名
         $rsaPrivateKeyFilePath = openssl_get_privatekey('file://'.storage_path('app/keys/private.pem'));
