@@ -287,6 +287,12 @@ class ApiController extends BaseController
         ];
         die(json_encode($response,JSON_UNESCAPED_UNICODE));
     }
+    //确认订单
+    public function orderdo(Request $request)
+    {
+        $data = $request-> all();
+        var_dump($data);
+    }
     //curl
     public function getcurl($info,$url)
     {
