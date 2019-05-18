@@ -353,6 +353,27 @@ class ApiController extends BaseController
             unset($goodsinfo[$k]['goods_desc']);
         }
         $res3 = DB::table('shop_detail')->insert($goodsinfo);
+        if(!$res3){
+            $response=[
+                'errno'=> 'no',
+                'msg' => '订单详情生成失败'
+            ];
+            echo json_encode($response,JSON_UNESCAPED_UNICODE);die;
+        }
+        //清空购物车
+        $res4 = DB::table('shop_cart')->where(['goods_id'=>$g_id ])->delete();
+        if(!$res4){
+            $response=[
+                'errno'=> 'no',
+                'msg' => '清空购物车失败'
+            ];
+            echo json_encode($response,JSON_UNESCAPED_UNICODE);die;
+        }
+
+        $response = [
+            'errno'=> 'ok'
+        ];
+        echo json_encode($response,JSON_UNESCAPED_UNICODE);die;
     }
     //订单号
     public function getorderno()
