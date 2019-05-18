@@ -290,8 +290,10 @@ class ApiController extends BaseController
     //确认订单
     public function orderdo(Request $request)
     {
-        $data = $request-> all();
-        var_dump($data);
+        $goods_id = $request-> goods_id();
+        $countprice = $request-> countprice();
+        $pay_type = $request-> pay_type();
+        var_dump($goods_id);
     }
     //curl
     public function getcurl($info,$url)
