@@ -402,7 +402,7 @@ class ApiController extends BaseController
             die(json_encode($response,JSON_UNESCAPED_UNICODE));
         }
         $res = DB::table('shop_order')->where(['order_id'=>$_GET['oid']])->first();
-        var_dump($res);die;
+//        var_dump($res);die;
         $pay_type = $res->pay_type;
         if($pay_type==2){
             //支付宝支付
