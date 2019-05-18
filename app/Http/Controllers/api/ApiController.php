@@ -393,7 +393,7 @@ class ApiController extends BaseController
     //支付
     public function alipay()
     {
-        print_r($_GET['oid']);die;
+//        print_r($_GET['oid']);die;
         if(empty($_GET['oid'])){
             $response = [
                 'errno'=> 'no',
@@ -401,7 +401,7 @@ class ApiController extends BaseController
             ];
             die(json_encode($response,JSON_UNESCAPED_UNICODE));
         }
-        $res = DB::table('shop_order')->where(['order_no'=>$_GET['oid']])->first();
+        $res = DB::table('shop_order')->where(['order_id'=>$_GET['oid']])->first();
         var_dump($res);die;
         $pay_type = $res->pay_type;
         if($pay_type==2){
