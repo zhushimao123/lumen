@@ -443,7 +443,7 @@ class ApiController extends BaseController
         {
             $i.=$k.'='.$v.'&';
         }
-        var_dump($i);die;
+//        var_dump($i);die;
         $trim  = rtrim($i,'&');
         //计算签名
         $rsaPrivateKeyFilePath = openssl_get_privatekey('file://'.storage_path('app/keys/private.pem'));
@@ -458,9 +458,9 @@ class ApiController extends BaseController
             $a.=$key.'='.urlencode($val).'&'; //urlencode 将字符串以url形式编码
         }
         $trim2 = rtrim($a,'&');
-        var_dump($trim);die;
+//        var_dump($trim);die;
         $url = 'https://openapi.alipaydev.com/gateway.do'.$trim2;
-        echo $url;die;
+//        echo $url;die;
         header('Location:'.$url);
 
     }
