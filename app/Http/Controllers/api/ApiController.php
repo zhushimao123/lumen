@@ -393,6 +393,7 @@ class ApiController extends BaseController
     //支付
     public function alipay()
     {
+        print_r($_GET['oid']);die;
         if(empty($_GET['oid'])){
             $response = [
                 'errno'=> 'no',
