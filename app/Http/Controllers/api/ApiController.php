@@ -415,7 +415,7 @@ class ApiController extends BaseController
     //支付宝支付
     public function  getalipay($oid)
     {
-        $res = DB::table('shop_order')->where(['order_no'=>$_GET['oid']])->first();
+        $res = DB::table('shop_order')->where(['order_id'=>$_GET['oid']])->first();
         //业务参数
         $bizcont = [
            'subject' => '月七',//交易标题/订单标题/订单关键
