@@ -295,7 +295,24 @@ class ApiController extends BaseController
         $countprice = $request-> countprice;
         $pay_type = $request-> pay_type;
         $g_id = explode(',',$goods_id);
-        var_dump($g_id);
+        if(!$g_id){
+            $response=[
+                'errno'=> 'no',
+                'msg' => '请选择一个商品'
+            ];
+            echo json_encode($response,JSON_UNESCAPED_UNICODE);die;
+        }
+        $pay = [1,2];
+        if(!in_array($pay_type,$pay)){
+            $response=[
+                'errno'=> 'no',
+                'msg' => '请选择一个支付方式'
+            ];
+            echo json_encode($response,JSON_UNESCAPED_UNICODE);die;
+        }
+        //存入订单表
+        $user_id = $_GET['user_id'];
+        echo $user_id;
     }
     //curl
     public function getcurl($info,$url)
