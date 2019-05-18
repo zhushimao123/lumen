@@ -447,8 +447,8 @@ class ApiController extends BaseController
         $trim  = rtrim($i,'&');
         //计算签名
         $rsaPrivateKeyFilePath = openssl_get_privatekey('file://'.storage_path('app/keys/private.pem'));
-        $a = openssl_error_string();
-         echo $a;die;
+//        $a = openssl_error_string();
+//         echo $a;die;
         openssl_sign($trim,$sign,$rsaPrivateKeyFilePath,OPENSSL_ALGO_SHA256);
         $sign = base64_encode($sign);
         $data['sign']=$sign;
