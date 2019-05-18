@@ -371,7 +371,8 @@ class ApiController extends BaseController
         }
 
         $response = [
-            'errno'=> 'ok'
+            'errno'=> 'ok',
+            'order_id' => $order_id
         ];
         echo json_encode($response,JSON_UNESCAPED_UNICODE);die;
     }
