@@ -326,7 +326,7 @@ class ApiController extends BaseController
             echo json_encode($response,JSON_UNESCAPED_UNICODE);die;
         }
         $order_id = DB::getPdo()->lastInsertId($res);
-        var_dump($order_id);die;
+//        var_dump($order_id);die;
         //订单详情
         $res2 = DB::table('shop_cart')->whereIn('shop_cart.goods_id',$g_id)->where(['user_id'=>$user_id])
             ->join('shop_goods','shop_cart.goods_id','=','shop_goods.goods_id')->get();
