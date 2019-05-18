@@ -381,7 +381,14 @@ class ApiController extends BaseController
     {
         $user_id = $_GET['uid'];
         $order_id = $_GET['order_id'];
-        var_dump($order_id);
+        $res = DB::table('shop_order')->where(['order_id'=> $order_id,'user_id'=>$user_id])->first();
+        $order_no = $res-> oreder_no;
+        $order_amount = $res-> order_amount;
+        $response = [
+            'order_no'=> $order_no,
+            'order_amount'=> $order_amount
+        ];
+        die(json_encode($response,JSON_UNESCAPED_UNICODE));
     }
     //订单号
     public function getorderno()
