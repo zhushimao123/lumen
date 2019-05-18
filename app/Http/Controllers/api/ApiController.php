@@ -458,7 +458,7 @@ class ApiController extends BaseController
             $a.=$key.'='.urlencode($val).'&'; //urlencode 将字符串以url形式编码
         }
         $trim2 = rtrim($a,'&');
-//        var_dump($trim);die;
+        var_dump($trim);die;
         $url = 'https://openapi.alipaydev.com/gateway.do'.$trim2;
         echo $url;die;
         header('Location:'.$url);
