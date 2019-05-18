@@ -312,7 +312,18 @@ class ApiController extends BaseController
         }
         //存入订单表
         $user_id = $_GET['user_id'];
-        echo $user_id;
+        $orderinfo['user_id']=$user_id;
+        $orderinfo['order_amount'] = $countprice;
+        $orderinfo['order_no'] = $this-> getorderno();
+        $orderinfo['create_time'] = time();
+        $res = DB::table('shop_order')->insert($orderinfo);
+    }
+    //订单号
+    public function getorderno()
+    {
+        $str = substr(sha1(time() . Str::random(10).'PIKAI_'."_"), 5, 15);
+        return $str;
+
     }
     //curl
     public function getcurl($info,$url)
