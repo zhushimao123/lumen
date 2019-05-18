@@ -443,7 +443,21 @@ class ApiController extends BaseController
         {
             $i.=$k.'='.$v.'&';
         }
-        var_dump($i);
+//        var_dump($i);
+        $trim  = rtrim($i,'&');
+        //计算签名
+        $rsaPrivateKeyFilePath = openssl_pkey_get_private("file://".storage_path('app/keys/private.pem '));
+        openssl_sign($trim,$sign,$rsaPrivateKeyFilePath,OPENSSL_ALGO_SHA256);
+        $sign = base64_encode($sign);
+        $data['sign']=$sign;
+        //拼接url
+        $a='?';
+        foreach($data as $key=>$val){
+            $a.=$key.'='.urlencode($val).'&'; //urlencode 将字符串以url形式编码
+        }
+        $trim = rtrim($a,'&');
+        var_dump($trim);die;
+
     }
     //微信支付
     public function weixinpay()
