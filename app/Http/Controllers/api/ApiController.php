@@ -376,6 +376,13 @@ class ApiController extends BaseController
         ];
         echo json_encode($response,JSON_UNESCAPED_UNICODE);die;
     }
+    //提交订单
+    public function orders()
+    {
+        $user_id = $_GET['uid'];
+        $order_id = $_GET['order_id'];
+        var_dump($order_id);
+    }
     //订单号
     public function getorderno()
     {
