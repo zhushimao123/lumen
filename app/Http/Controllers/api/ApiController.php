@@ -328,7 +328,30 @@ class ApiController extends BaseController
         //订单详情
         $res2 = DB::table('shop_cart')->whereIn('shop_cart.goods_id',$g_id)->where(['user_id'=>$user_id])
             ->join('shop_goods','shop_cart.goods_id','=','shop_goods.goods_id')->get();
-        var_dump($res2);
+        $goodsinfo =json_decode(json_encode($res2),true);
+        $order_id = DB::getPdo()->lastInsertId($res);
+        foreach($goodsinfo as $k=>$v){
+            $goodsinfo[$k]['order_id'] =$order_id;
+            $goodsinfo[$k]['user_id'] = $user_id;
+            $goodsinfo[$k]['create_time'] =time();
+            $goodsinfo[$k]['update_time'] =time();
+            unset($goodsinfo[$k]['cart_id']);
+            unset($goodsinfo[$k]['save_status']);
+            unset($goodsinfo[$k]['goods_bzprice']);
+            unset($goodsinfo[$k]['goods_show']);
+            unset($goodsinfo[$k]['goods_showimg']);
+            unset($goodsinfo[$k]['goods_new']);
+            unset($goodsinfo[$k]['goods_best']);
+            unset($goodsinfo[$k]['goods_desc']);
+            unset($goodsinfo[$k]['cate_id']);
+            unset($goodsinfo[$k]['brand_id']);
+            unset($goodsinfo[$k]['goods_hot']);
+            unset($goodsinfo[$k]['cart_status']);
+            unset($goodsinfo[$k]['goods_inventory']);
+            unset($goodsinfo[$k]['goods_integral']);
+            unset($goodsinfo[$k]['goods_desc']);
+        }
+        $res3 = DB::table('shop_detail')->insert($goodsinfo);
     }
     //订单号
     public function getorderno()
