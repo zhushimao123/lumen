@@ -316,7 +316,19 @@ class ApiController extends BaseController
         $orderinfo['order_amount'] = $countprice;
         $orderinfo['order_no'] = $this-> getorderno();
         $orderinfo['create_time'] = time();
+        $orderinfo['pay_type'] = $pay_type;
         $res = DB::table('shop_order')->insert($orderinfo);
+        if(!$res){
+            $response=[
+                'errno'=> 'no',
+                'msg' => '订单生成失败'
+            ];
+            echo json_encode($response,JSON_UNESCAPED_UNICODE);die;
+        }
+        //订单详情
+        $res2 = DB::table('shop_cart')->whereIn('shop_cart.goods_id',$g_id)->where(['user_id'=>$user_id])
+            ->join('shop_goods','shop_cart.goods_id','=','shop_goods.goods_id')->get();
+        var_dump($res2);
     }
     //订单号
     public function getorderno()
