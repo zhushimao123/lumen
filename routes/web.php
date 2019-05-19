@@ -48,5 +48,8 @@ $router->get('/delecart','api\ApiController@delecart');
 $router->get('/orders','api\ApiController@orders');
 //支付
 $router->get('/alipay','api\ApiController@alipay');
+//成功 同步
+$router->get('/alipayReturn','api\ApiController@alipayReturn');
 
+//异步通知
 

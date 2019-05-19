@@ -434,7 +434,7 @@ class ApiController extends BaseController
             'timestamp'   => date('Y-m-d H:i:s'),
             'version'   => '1.0',
 //            'notify_url'   => $this->notify(),        //异步通知地址
-//            'return_url'   => $this->return(),        // 同步通知地址
+            'return_url'   => 'http://api.mneddx.com/alipayReturn',      // 同步通知地址
             'biz_content'   => json_encode($bizcont),
         ];
         //拼接参数
@@ -466,6 +466,12 @@ class ApiController extends BaseController
             'errno'=> 'ok'
         ];
         die(json_encode($response));
+
+    }
+    //支付成功同步通知
+    public function alipayReturn()
+    {
+        header('Location: http://127.0.0.1:8848/app/goodslist.html');
 
     }
     //微信支付
