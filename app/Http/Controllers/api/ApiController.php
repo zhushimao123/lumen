@@ -461,8 +461,11 @@ class ApiController extends BaseController
         $trim2 = rtrim($a,'&');
 //        var_dump($trim);die;
         $url = 'https://openapi.alipaydev.com/gateway.do'.$trim2;
-        echo $url;die;
-        header('Location:'.$url);
+        $response = [
+            'url'=> $url,
+            'errno'=> 'ok'
+        ];
+        die(json_encode($response));
 
     }
     //微信支付
