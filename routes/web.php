@@ -52,4 +52,5 @@ $router->get('/alipay','api\ApiController@alipay');
 $router->get('/alipayReturn','api\ApiController@alipayReturn');
 
 //异步通知
+$router->get('/alipayNotify','api\ApiController@alipayNotify');
 

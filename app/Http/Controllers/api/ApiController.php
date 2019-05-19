@@ -433,7 +433,7 @@ class ApiController extends BaseController
             'sign_type'   => 'RSA2',
             'timestamp'   => date('Y-m-d H:i:s'),
             'version'   => '1.0',
-//            'notify_url'   => $this->notify(),        //异步通知地址
+            'notify_url'   => 'http://api.mneddx.com/alipayNotify',       //异步通知地址
             'return_url'   => 'http://api.mneddx.com/alipayReturn',      // 同步通知地址
             'biz_content'   => json_encode($bizcont),
         ];
