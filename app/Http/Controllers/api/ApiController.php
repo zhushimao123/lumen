@@ -461,7 +461,7 @@ class ApiController extends BaseController
         $trim2 = rtrim($a,'&');
 //        var_dump($trim);die;
         $url = 'https://openapi.alipaydev.com/gateway.do'.$trim2;
-//        echo $url;die;
+        echo $url;die;
         header('Location:'.$url);
 
     }
